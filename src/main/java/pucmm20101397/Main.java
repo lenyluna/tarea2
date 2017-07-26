@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static spark.Spark.port;
+
 /**
  * Created by No. GP62 on 01/06/2017.
  */
@@ -22,6 +24,7 @@ public class Main {
 
 
     public static void main(String[] args) {
+        port(getPuertoHeroku());
         final Configuration configuration = new Configuration(new Version(2, 3, 0));
         configuration.setClassForTemplateLoading(Main.class, "/");
         estudiante yuca = new estudiante(256,"juajua","lola","131241");
@@ -126,5 +129,12 @@ public class Main {
 
             return writer;
         });
+    }
+    static int getPuertoHeroku() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //En caso de no pasar la información, toma el puerto 4567
     }
 }

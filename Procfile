@@ -1,0 +1,1 @@
+web: build/install/tarea2/bin/tarea2

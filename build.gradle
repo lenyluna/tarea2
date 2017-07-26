@@ -2,7 +2,10 @@ group '20101397'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'java'
+apply plugin: 'application'
 
+mainClassName = "/pucmm20101397/Main"
 sourceCompatibility = 1.8
 
 repositories {
@@ -13,4 +16,8 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile "com.sparkjava:spark-core:2.6.0" //add to build.gradle
     compile group: 'org.freemarker', name: 'freemarker', version: '2.3.26-incubating'
+    runtime "org.slf4j:slf4j-simple:1.7.12"
+}
+task stage {
+    dependsOn installDist
 }
